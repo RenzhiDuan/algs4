@@ -12,6 +12,8 @@
 
 package edu.princeton.cs.algs4;
 
+import java.io.*;//for I/O redirecting
+
 /**
  *  The {@code QuickUnionUF} class represents a <em>union–find data type</em>
  *  (also known as the <em>disjoint-sets data type</em>).
@@ -169,8 +171,24 @@ public class QuickUnionUF {
      * and print the pair to standard output.
      *
      * @param args the command-line arguments
+     * @throws FileNotFoundException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+    	//try to redirecting the input and output to files, import java.io.*
+    	//test data are located at :
+    	//"D:\OneDrive\Documents\THU_Master\Courses\Online Courses\Algorithms\code\algs4-data"
+    	// Data files:   http://algs4.cs.princeton.edu/15uf/tinyUF.txt
+    	//                http://algs4.cs.princeton.edu/15uf/mediumUF.txt
+    	//               http://algs4.cs.princeton.edu/15uf/largeUF.txt
+    	String data_filePath = "D:\\OneDrive\\Documents\\THU_Master\\Courses\\Online Courses\\Algorithms\\code\\algs4-data\\";
+    	String data_fileName = "mediumUF.txt";
+    	System.setIn(new FileInputStream(new File(data_filePath + data_fileName)));	
+    	String result_filePath = "D:\\OneDrive\\Documents\\THU_Master\\Courses\\Online Courses\\Algorithms\\code\\algs4-results\\";
+    	String result_fileName = "mediumUF_result.txt";
+    	System.setOut(new PrintStream(new File(result_filePath + result_fileName)));
+    	//File I/O exception is not handled here, so either a exception throwing 
+    	//statement or a @throw declaration is needed here.
+    	
         int n = StdIn.readInt();
         QuickUnionUF uf = new QuickUnionUF(n);
         while (!StdIn.isEmpty()) {
@@ -184,8 +202,6 @@ public class QuickUnionUF {
         }
         StdOut.println(uf.count() + " components");
     }
-
-
 }
 
 /******************************************************************************
