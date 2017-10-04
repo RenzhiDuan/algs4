@@ -174,6 +174,8 @@ public class QuickUnionUF {
         int n = StdIn.readInt();
         QuickUnionUF uf = new QuickUnionUF(n);
         while (!StdIn.isEmpty()) {
+        //when keyboard is used as input device, "control+z" after pressing Enter
+        // is a signal of EOF(end of file) which can terminate this loop
             int p = StdIn.readInt();
             int q = StdIn.readInt();
             if (uf.connected(p, q)) continue;
